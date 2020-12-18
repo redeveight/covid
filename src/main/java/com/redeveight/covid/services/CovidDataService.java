@@ -22,6 +22,10 @@ public class CovidDataService {
 
     private List<LocationStats> stats = new ArrayList<>();
 
+    public List<LocationStats> getStats() {
+        return stats;
+    }
+
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
     public void fetchCovidData() throws IOException, InterruptedException {
@@ -40,7 +44,7 @@ public class CovidDataService {
             locationStats.setContinent(record.get("continent"));
             locationStats.setLocation(record.get("location"));
             locationStats.setLatestTotalCases(record.get("total_cases"));
-            System.out.println(locationStats.toString());
+            //System.out.println(locationStats.toString());
             newStats.add(locationStats);
         }
         this.stats = newStats;
